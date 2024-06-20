@@ -16,7 +16,7 @@ function AddTodo() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="w-1/2 mx-auto">
       <input
         type="text"
         name="input"
