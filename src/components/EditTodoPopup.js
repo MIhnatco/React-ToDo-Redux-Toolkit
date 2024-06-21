@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+/**
+ * EditTodoPopup component renders a popup modal to edit the content of a todo item
+ *
+ * @param {String} text - The current text of the todo item
+ * @param {function} onSave - Function to handle saving the edited todo item
+ * @param {function} onClose - Function to handle closing the popup without saving
+ * @returns {JSX.Element} The rendered component
+ */
+
 function EditTodoPopup({ text, onSave, onClose }) {
   const [changeTodo, setChangeTodo] = useState(text);
 
@@ -7,6 +16,12 @@ function EditTodoPopup({ text, onSave, onClose }) {
   useEffect(() => {
     setChangeTodo(text)
   }, [text])
+
+
+  /**
+   * Handle change in the input field
+   * @param {React.ChangeEvent} e - The change event object 
+   */
 
   const handleChange = (e) => {
     setChangeTodo(e.target.value);

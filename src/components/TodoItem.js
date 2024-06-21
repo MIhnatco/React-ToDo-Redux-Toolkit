@@ -4,28 +4,51 @@ import { removeTodo, updateTodo } from "../features/todos/todoSlice";
 
 import EditTodoPopup from "./EditTodoPopup";
 
+
+/**
+ * TodoItem component renders a single todo item with options to edit or remove it.
+ * @param {Object} todo - The todo item object
+ * @param {number} todo.id - The ID of the todo item
+ * @param {string} todo.content - The content of the todo item. 
+ * @returns {JSX.Element} The rendered component
+ */
+
 function TodoItem({ todo }) {
   const [editMode, setEditMode] = useState(false);
 
-
   const dispatch = useDispatch();
 
+
+  /**
+   * Handles the edit button click
+   * @param {string} editContent - The current content of the todo item
+   */
   function handleEdit(editContent) {
     setEditMode(true);
-
   }
 
+
+  /**
+   * Handles closing the edit popup.
+   */
   const handleClose = () => {
-    setEditMode(false)
-  }
+    setEditMode(false);
+  };
 
+
+  /**
+   * Handles saving the edited todo item.
+   * @param {string} newText  - The new text for the todo item.
+   */
   const handleSave = (newText) => {
-    dispatch(updateTodo({
-      id: todo.id, 
-      content: newText
-    }))
-    setEditMode(false)
-  }
+    dispatch(
+      updateTodo({
+        id: todo.id,
+        content: newText,
+      })
+    );
+    setEditMode(false);
+  };
 
   return (
     <>
@@ -48,16 +71,16 @@ function TodoItem({ todo }) {
                 <path
                   d="M3 14V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V14"
                   stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M12 17V3M12 3L7 8.44446M12 3L17 8.44444"
                   stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
@@ -90,7 +113,13 @@ function TodoItem({ todo }) {
         </li>
       </ul>
 
-      {editMode && <EditTodoPopup text={todo.content} onSave={handleSave} onClose={handleClose} />}
+      {editMode && (
+        <EditTodoPopup
+          text={todo.content}
+          onSave={handleSave}
+          onClose={handleClose}
+        />
+      )}
     </>
   );
 }

@@ -16,19 +16,19 @@ const todoSlice = createSlice({
 
       state.todos.push(newTodo);
     },
-    
+
     removeTodo: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
-    }, 
+    },
 
     updateTodo: (state, action) => {
-      const {id, content} = action.payload
-      const todo = state.todos.find((todo) => todo.id === id)
+      const { id, content } = action.payload;
+      const todo = state.todos.find((todo) => todo.id === id);
 
-      if(todo){
-        todo.content = content
+      if (todo) {
+        todo.content = content;
       }
-    }
+    },
   },
 });
 
